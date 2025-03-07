@@ -5,27 +5,37 @@
 go의 chromedp하고
 node js의 playwright가 서로 비슷한 성능을 보여줌
 
+chromedp
 0.217
 0.081
 
+playwright
 0.180
 0.117
 
-아무래도 go-routine이 비동기 로직보다 빠르기때문인듯
-중요한건 go 자체의 언어의 난이도와, chromedp의 난이도가
-js의 playwright하고 비교하기엔 너무 어렵다는 것.
+이건 근데 쓰기가 들어간 성능이라서 비동기 테스트에서는 그럴 수 있고
+읽기만 하면
 
-go-chromedp로 강의 자동화 프로그램 만들려다가 결국 포기함.
+chromedp
+0.044
+0.009
+
+playwright
+0.066
+0.036
+
+확실히 읽기락이 안걸려있을때는 chromedp가 압도적이네요
 
 ---
 
 ## 결론
 
-js의 playwright -> 편의성, 성능, 유지보수, docs까지 모두 다 잡음
-심지어 동시성 로직도 async로 짜기 매우 쉬움
-앞으로 웹 자동화는 **js의 playwright**를 사용할 것임.
+chromedp가 playwright와 비교해서 느릴 수도 있고 빠를 수도 있는데
+중요한건 비동기쪽으로 파고 들어가면 읽기락이 걸리지 않은 이상 chromedp가 압도적임.
+근데 그렇다고해서 playwright가 뒤쳐지냐? 그건 절대 아님.
+js라는 언어가 주는 장점과 애초에 ms가 개발한 프레임워크인데 문법이나 편의성이 압도적임.
 
----
+## 둘 다 일단 파볼게요
 
 find and send_key \* 100번
 

@@ -21,7 +21,7 @@ async def test1_single_run_many_actions():
 
         # 검색창에 100번 'a' 입력 (한번에 액션 모음)
         for i in range(100):
-            await page.locator('textarea[name="q"]').fill("a")
+            await page.locator('textarea[name="q"]').text_content()
 
         duration = time.time() - start_time
         print(f"완료 시간: {duration:.6f}초")
@@ -46,7 +46,7 @@ async def test2_multiple_runs_single_action():
 
         # 각각 별도로 실행
         for i in range(100):
-            await page.locator('textarea[name="q"]').fill("a")
+            await page.locator('textarea[name="q"]').text_content()
 
         duration = time.time() - start_time
         print(f"완료 시간: {duration:.6f}초")
@@ -57,7 +57,7 @@ async def test2_multiple_runs_single_action():
 
 async def run_action(page):
     """테스트 3에서 사용할 단일 액션"""
-    await page.locator('textarea[name="q"]').fill("a")
+    await page.locator('textarea[name="q"]').text_content()
 
 
 async def test3_concurrent_runs():

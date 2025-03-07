@@ -24,7 +24,7 @@ async function testSequential() {
 
   // 순차적으로 100번 타이핑
   for (let i = 0; i < 100; i++) {
-    await page.locator('textarea[name="q"]').fill("a");
+    await page.locator('textarea[name="q"]').textContent();
   }
 
   const duration = (Date.now() - startTime) / 1000;
@@ -47,7 +47,7 @@ async function testConcurrent() {
   // 비동기로 100개 작업 생성
   const tasks = Array(100)
     .fill()
-    .map(() => page.locator('textarea[name="q"]').fill("a"));
+    .map(() => page.locator('textarea[name="q"]').textContent());
 
   // 모든 작업 병렬 실행
   await Promise.all(tasks);

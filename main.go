@@ -50,7 +50,8 @@ func runSingleRunManyActions() time.Duration {
 	// 100개 SendKeys 액션 준비
 	var actions []chromedp.Action
 	for i := 0; i < 100; i++ {
-		actions = append(actions, chromedp.SendKeys(`textarea[name="q"]`, "a", chromedp.ByQuery))
+		temp := ""
+		actions = append(actions, chromedp.TextContent(`textarea[name="q"]`, &temp, chromedp.ByQuery))
 	}
 
 	start := time.Now()
@@ -86,7 +87,8 @@ func runMultipleRunSingleAction() time.Duration {
 	start := time.Now()
 	// 100번 각각 Run 호출하여 SendKeys 실행
 	for i := 0; i < 100; i++ {
-		if err := chromedp.Run(ctx, chromedp.SendKeys(`textarea[name="q"]`, "a", chromedp.ByQuery)); err != nil {
+		temp := ""
+		if err := chromedp.Run(ctx, chromedp.TextContent(`textarea[name="q"]`, &temp, chromedp.ByQuery)); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -123,7 +125,8 @@ func runMultipleRunWithGoroutines() time.Duration {
 	for i := 0; i < 100; i++ {
 		go func() {
 			defer wg.Done()
-			if err := chromedp.Run(ctx, chromedp.SendKeys(`textarea[name="q"]`, "a", chromedp.ByQuery)); err != nil {
+			temp := ""
+			if err := chromedp.Run(ctx, chromedp.TextContent(`textarea[name="q"]`, &temp, chromedp.ByQuery)); err != nil {
 				log.Printf("오류 발생: %v", err)
 			}
 		}()
