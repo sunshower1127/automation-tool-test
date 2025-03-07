@@ -1,0 +1,19 @@
+{
+  "name": "browser-automation-tests",
+  "version": "1.0.0",
+  "description": "브라우저 자동화 도구 비교 테스트",
+  "main": "run-all-tests.js",
+  "scripts": {
+    "test:all": "node run-all-tests.js",
+    "test:playwright": "node playwright-test.js",
+    "test:puppeteer": "node puppeteer-test.js",
+    "test:cypress": "cypress run --spec cypress-test.js"
+  },
+  "dependencies": {
+    "playwright": "^1.50.1",
+    "puppeteer": "^21.5.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.5.0"
+  }
+}
